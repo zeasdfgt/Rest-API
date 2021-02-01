@@ -1,0 +1,1248 @@
+{
+	"info": {
+		"_postman_id": "a30a5100-de63-44b4-bea6-1326185507f5",
+		"name": "Projet2020 - GLO-4002 MEP 3 test ne pas modif",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reservation",
+			"item": [
+				{
+					"name": "Create reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4b412d32-81ed-495a-904d-1a442a03662a",
+								"exec": [
+									"pm.test(\"POST reservation is successful\", function () {",
+									"   pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"POST reservation returns created ID\", function () {",
+									"   pm.expect(pm.response.headers.get('Location')).to.match(/^\\/reservations\\/[0-9]*/);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"vendorCode\": \"TEAM\",\n  \"dinnerDate\": \"2150-07-21T15:23:20.142Z\",\n  \"from\": {\n    \"country\": {\n        \"code\": \"CA\",\n        \"fullname\": \"CANADA\",\n        \"currency\": \"CAD\"\n    },\n    \"reservationDate\": \"2150-05-21T15:23:20.142Z\"\n  },\n  \"tables\": [\n    {\n         \"customers\": [\n            { \"name\": \"John\", \"restrictions\": [] },\n            { \"name\": \"Jane\", \"restrictions\": [\"vegetarian\"] }\n         ]\n      },\n      {\n         \"customers\": [\n            { \"name\": \"Roger\", \"restrictions\": [] },\n            { \"name\": \"Rogette\", \"restrictions\": [\"vegetarian\", \"illness\"] }\n         ]\n      }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reservation 1 customer no restriction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c15b7e10-03dd-4533-bb73-985b83d89993",
+								"exec": [
+									"pm.test(\"POST reservation is successful\", function () {\r",
+									"   pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"POST reservation returns created ID\", function () {\r",
+									"   pm.expect(pm.response.headers.get('Location')).to.match(/^\\/reservations\\/[0-9]*/);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vendorCode\": \"TEAM\",\r\n  \"dinnerDate\": \"2150-07-21T15:23:20.142Z\",\r\n  \"from\": {\r\n    \"country\": {\r\n        \"code\": \"CA\",\r\n        \"fullname\": \"CANADA\",\r\n        \"currency\": \"CAD\"\r\n    },\r\n    \"reservationDate\": \"2150-05-21T15:23:20.142Z\"\r\n  },\r\n  \"tables\": [\r\n    {\r\n         \"customers\": [\r\n            { \"name\": \"John\", \"restrictions\": [] }\r\n         ]\r\n      }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reservation 2 customers no restriction and illness",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5ca48a6a-153d-4348-a762-41ce94d1a4b0",
+								"exec": [
+									"pm.test(\"POST reservation is successful\", function () {\r",
+									"   pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"POST reservation returns created ID\", function () {\r",
+									"   pm.expect(pm.response.headers.get('Location')).to.match(/^\\/reservations\\/[0-9]*/);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vendorCode\": \"TEAM\",\r\n  \"dinnerDate\": \"2150-07-22T15:23:20.142Z\",\r\n  \"from\": {\r\n    \"country\": {\r\n        \"code\": \"CA\",\r\n        \"fullname\": \"CANADA\",\r\n        \"currency\": \"CAD\"\r\n    },\r\n    \"reservationDate\": \"2150-05-21T15:23:20.142Z\"\r\n  },\r\n  \"tables\": [\r\n    {\r\n        \"customers\": [\r\n            { \"name\": \"John\", \"restrictions\": [] },\r\n            { \"name\": \"Jane\", \"restrictions\": [\"illness\"] }\r\n        ]\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reservation 4 customers 2 vegetarian, 1 illness and 1 no restriction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "03345684-a2c1-4b4c-88dc-525b3ec8368d",
+								"exec": [
+									"pm.test(\"POST reservation is successful\", function () {\r",
+									"   pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"POST reservation returns created ID\", function () {\r",
+									"   pm.expect(pm.response.headers.get('Location')).to.match(/^\\/reservations\\/[0-9]*/);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vendorCode\": \"TEAM\",\r\n  \"dinnerDate\": \"2150-07-23T15:23:20.142Z\",\r\n  \"from\": {\r\n    \"country\": {\r\n        \"code\": \"CA\",\r\n        \"fullname\": \"CANADA\",\r\n        \"currency\": \"CAD\"\r\n    },\r\n    \"reservationDate\": \"2150-05-21T15:23:20.142Z\"\r\n  },\r\n  \"tables\": [\r\n    {\r\n        \"customers\": [\r\n            { \"name\": \"cyka\", \"restrictions\": [\"vegetarian\"] },\r\n            { \"name\": \"blyat\", \"restrictions\": [\"vegetarian\"] },\r\n            { \"name\": \"Jane\", \"restrictions\": [\"illness\"] },\r\n            { \"name\": \"yeet\", \"restrictions\": [] }\r\n        ]\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reservation 3 customers 2 vegetarian and 1 illness",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bc31552-d1cb-48cc-bdfd-873b0c64efb5",
+								"exec": [
+									"pm.test(\"POST reservation is successful\", function () {\r",
+									"   pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"POST reservation returns created ID\", function () {\r",
+									"   pm.expect(pm.response.headers.get('Location')).to.match(/^\\/reservations\\/[0-9]*/);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vendorCode\": \"TEAM\",\r\n  \"dinnerDate\": \"2150-07-24T15:23:20.142Z\",\r\n  \"from\": {\r\n    \"country\": {\r\n        \"code\": \"CA\",\r\n        \"fullname\": \"CANADA\",\r\n        \"currency\": \"CAD\"\r\n    },\r\n    \"reservationDate\": \"2150-05-21T15:23:20.142Z\"\r\n  },\r\n  \"tables\": [\r\n    {\r\n         \"customers\": [\r\n            { \"name\": \"cyka\", \"restrictions\": [\"vegetarian\"] },\r\n            { \"name\": \"blyat\", \"restrictions\": [\"vegetarian\"] },\r\n            { \"name\": \"Jane\", \"restrictions\": [\"illness\"] }\r\n         ]\r\n      }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reservation with 6 customers all restrictions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6d29589f-1c6e-45c7-ac15-0366ac2d265a",
+								"exec": [
+									"pm.test(\"POST reservation is successful\", function () {\r",
+									"   pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"POST reservation returns created ID\", function () {\r",
+									"   pm.expect(pm.response.headers.get('Location')).to.match(/^\\/reservations\\/[0-9]*/);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vendorCode\": \"TEAM\",\r\n  \"dinnerDate\": \"2150-07-27T15:23:20.142Z\",\r\n  \"from\": {\r\n    \"country\": {\r\n        \"code\": \"CA\",\r\n        \"fullname\": \"CANADA\",\r\n        \"currency\": \"CAD\"\r\n    },\r\n    \"reservationDate\": \"2150-05-21T15:23:20.142Z\"\r\n  },\r\n  \"tables\": [\r\n    {\r\n         \"customers\": [\r\n            { \"name\": \"John\", \"restrictions\": [\"vegetarian\",\"vegan\",\"illness\",\"allergies\"] },\r\n            { \"name\": \"Jane\", \"restrictions\": [\"vegetarian\",\"vegan\",\"illness\",\"allergies\"] },\r\n            { \"name\": \"J\", \"restrictions\": [\"vegetarian\",\"vegan\",\"illness\",\"allergies\"] },\r\n            { \"name\": \"G\", \"restrictions\": [\"vegetarian\",\"vegan\",\"illness\",\"allergies\"] }\r\n         ]\r\n      },\r\n      {\r\n         \"customers\": [\r\n            { \"name\": \"Roger\", \"restrictions\": [\"vegetarian\",\"vegan\",\"illness\",\"allergies\"] },\r\n            { \"name\": \"Rogette\", \"restrictions\": [\"vegetarian\",\"vegan\",\"illness\",\"allergies\"] }\r\n         ]\r\n      }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reservation with tomato conflict",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "061dbc09-38c9-4611-9a09-682441557a42",
+								"exec": [
+									"pm.test(\"POST reservation fail\", function () {",
+									"   pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"POST reservation error is too picky\", function () {",
+									"   pm.expect(pm.response.json().error).to.eql('TOO_PICKY');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"vendorCode\": \"TEAM\",\n  \"dinnerDate\": \"2150-07-21T15:23:20.142Z\",\n  \"from\": {\n    \"country\": {\n        \"code\": \"CA\",\n        \"fullname\": \"CANADA\",\n        \"currency\": \"CAD\"\n    },\n    \"reservationDate\": \"2150-05-21T15:23:20.142Z\"\n  },\n  \"tables\": [\n    {\n         \"customers\": [\n            { \"name\": \"Jane\", \"restrictions\": [\"vegan\"] }\n         ]\n      }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reservation with allergies  conflict",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1bb5c3ca-e581-4ca7-85cf-cab7d44dbcf1",
+								"exec": [
+									"pm.test(\"POST reservation fail\", function () {\r",
+									"   pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"POST reservation error is too picky\", function () {\r",
+									"   pm.expect(pm.response.json().error).to.eql('TOO_PICKY');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vendorCode\": \"TEAM\",\r\n  \"dinnerDate\": \"2150-07-21T15:23:20.142Z\",\r\n  \"from\": {\r\n    \"country\": {\r\n        \"code\": \"CA\",\r\n        \"fullname\": \"CANADA\",\r\n        \"currency\": \"CAD\"\r\n    },\r\n    \"reservationDate\": \"2150-05-21T15:23:20.142Z\"\r\n  },\r\n  \"tables\": [\r\n    {\r\n         \"customers\": [\r\n            { \"name\": \"John\", \"restrictions\": [] },\r\n            { \"name\": \"Jane\", \"restrictions\": [\"allergies\"] }\r\n         ]\r\n      }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reservation invalid dinner date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "451d108f-758c-4f5e-8fe4-addd88850e37",
+								"exec": [
+									"pm.test(\"POST reservation returns status code 400\", function () {",
+									"   pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"POST reservation error is invalid dinner date\", function () {",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_DINNER_DATE');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"vendorCode\": \"TEAM\",\n  \"dinnerDate\": \"2100-07-21T15:23:20.142Z\",\n  \"from\": {\n    \"country\": {\n        \"code\": \"CA\",\n        \"fullname\": \"CANADA\",\n        \"currency\": \"CAD\"\n    },\n    \"reservationDate\": \"2150-05-21T15:23:20.142Z\"\n  },\n  \"tables\": [\n    {\n         \"customers\": [\n            { \"name\": \"John\", \"restrictions\": [] },\n            { \"name\": \"Jane\", \"restrictions\": [\"vegetarian\"] }\n         ]\n      },\n      {\n         \"customers\": [\n            { \"name\": \"Roger\", \"restrictions\": [] },\n            { \"name\": \"Rogette\", \"restrictions\": [\"vegetarian\", \"illness\"] }\n         ]\n      }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reservation invalid reservation date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d37daf34-d57e-4097-82de-edb1d37acd27",
+								"exec": [
+									"pm.test(\"POST reservation returns status code 400\", function () {",
+									"   pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"POST reservation error is invalid reservation date\", function () {",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_RESERVATION_DATE');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"vendorCode\": \"TEAM\",\n  \"dinnerDate\": \"2150-07-21T15:23:20.142Z\",\n  \"from\": {\n    \"country\": {\n        \"code\": \"CA\",\n        \"fullname\": \"CANADA\",\n        \"currency\": \"CAD\"\n    },\n    \"reservationDate\": \"2050-05-21T15:23:20.142Z\"\n  },\n  \"tables\": [\n    {\n         \"customers\": [\n            { \"name\": \"John\", \"restrictions\": [] },\n            { \"name\": \"Jane\", \"restrictions\": [\"vegetarian\"] }\n         ]\n      },\n      {\n         \"customers\": [\n            { \"name\": \"Roger\", \"restrictions\": [] },\n            { \"name\": \"Rogette\", \"restrictions\": [\"vegetarian\", \"illness\"] }\n         ]\n      }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reservation invalid reservation quantity (tables)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b21d999f-6f59-44ea-8d96-1e24456a71db",
+								"exec": [
+									"pm.test(\"POST reservation returns status code 400\", function () {",
+									"   pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"POST reservation error is invalid dinner date\", function () {",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_RESERVATION_QUANTITY');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"vendorCode\": \"TEAM\",\n  \"dinnerDate\": \"2150-07-21T15:23:20.142Z\",\n  \"from\": {\n    \"country\": {\n        \"code\": \"CA\",\n        \"fullname\": \"CANADA\",\n        \"currency\": \"CAD\"\n    },\n    \"reservationDate\": \"2150-05-21T15:23:20.142Z\"\n  },\n  \"tables\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create reservation invalid reservation quantity (customers)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d09da3ff-5cdd-4fc6-a720-9977ec04fc38",
+								"exec": [
+									"pm.test(\"POST reservation returns status code 400\", function () {",
+									"   pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"POST reservation error is invalid dinner date\", function () {",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_RESERVATION_QUANTITY');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"vendorCode\": \"TEAM\",\n  \"dinnerDate\": \"2150-07-21T15:23:20.142Z\",\n  \"from\": {\n    \"country\": {\n        \"code\": \"CA\",\n        \"fullname\": \"CANADA\",\n        \"currency\": \"CAD\"\n    },\n    \"reservationDate\": \"2150-05-21T15:23:20.142Z\"\n  },\n  \"tables\": [\n    {\n         \"customers\": []\n      },\n      {\n         \"customers\": [\n            { \"name\": \"Roger\", \"restrictions\": [\"allergies\"] },\n            { \"name\": \"Rogette\", \"restrictions\": [\"vegetarian\", \"illness\"] }\n         ]\n      }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reservation by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65753d5f-47fc-469d-bd7e-728eddd79795",
+								"exec": [
+									"pm.test(\"GET reservation is successful\", function () {",
+									"   pm.response.to.be.success",
+									"});",
+									"",
+									"pm.test(\"Reservation response has reservationPrice\", function () {",
+									"    pm.expect(pm.response.json().reservationPrice).to.equal(5000)",
+									"})",
+									"",
+									"pm.test(\"Reservation response has dinnerDate\", function () {",
+									"    pm.expect(pm.response.json().dinnerDate).to.equal(\"2150-07-21T15:23:20.142Z\")",
+									"})",
+									"",
+									"pm.test(\"Reservation response has customers\", function () {",
+									"    pm.expect(pm.response.json().customers.length).equal(4)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reservations/TEAM-0",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reservations",
+								"TEAM-0"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Ingredient report",
+			"item": [
+				{
+					"name": "Get Ingredient report valid dates and type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e7a7a9f8-1757-40ea-854f-76ef18769f0a",
+								"exec": [
+									"pm.test(\"GET ingredient report is successful\", function () {\r",
+									"   pm.response.to.be.success\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reports/ingredients?startDate=2150-07-20&endDate=2150-07-30&type=total",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reports",
+								"ingredients"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2150-07-20"
+								},
+								{
+									"key": "endDate",
+									"value": "2150-07-30"
+								},
+								{
+									"key": "type",
+									"value": "total"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ingredient report Invalid startDate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fdaea580-12ba-447a-b82a-804b37c53aa8",
+								"exec": [
+									"pm.test(\"POST ingredient report error is invalid startDate\", function () {\r",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_DATE');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reports/ingredients?startDate=2150-07-19&endDate=2150-07-30&type=total",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reports",
+								"ingredients"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2150-07-19"
+								},
+								{
+									"key": "endDate",
+									"value": "2150-07-30"
+								},
+								{
+									"key": "type",
+									"value": "total"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ingredient report Invalid startDate is empty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5e5e82aa-ed91-4343-a04c-ae2af48919d5",
+								"exec": [
+									"pm.test(\"POST ingredient report error is invalid startDate is empty\", function () {\r",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_DATE');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reports/ingredients?startDate=&endDate=2150-07-30&type=total",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reports",
+								"ingredients"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": ""
+								},
+								{
+									"key": "endDate",
+									"value": "2150-07-30"
+								},
+								{
+									"key": "type",
+									"value": "total"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ingredient report Invalid endDate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e95834c-3fde-4122-a5e8-3095096c49fd",
+								"exec": [
+									"pm.test(\"POST ingredient report error is invalid endDate\", function () {\r",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_DATE');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reports/ingredients?startDate=2150-07-20&endDate=2150-07-31&type=total",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reports",
+								"ingredients"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2150-07-20"
+								},
+								{
+									"key": "endDate",
+									"value": "2150-07-31"
+								},
+								{
+									"key": "type",
+									"value": "total"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ingredient report Invalid endDate is empty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bbb1d3c-56b7-4f20-91cc-21a83a786a51",
+								"exec": [
+									"pm.test(\"POST ingredient report error is invalid endDate is empty\", function () {\r",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_DATE');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reports/ingredients?startDate=2150-07-20&endDate=&type=total",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reports",
+								"ingredients"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2150-07-20"
+								},
+								{
+									"key": "endDate",
+									"value": ""
+								},
+								{
+									"key": "type",
+									"value": "total"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ingredient report Invalid type is empty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "462002b9-1dc3-49a2-9aea-61e292ac671a",
+								"exec": [
+									"pm.test(\"POST ingredient report error is invalid type is empty\", function () {\r",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_TYPE');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reports/ingredients?startDate=2150-07-20&endDate=2150-07-30&type=",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reports",
+								"ingredients"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2150-07-20"
+								},
+								{
+									"key": "endDate",
+									"value": "2150-07-30"
+								},
+								{
+									"key": "type",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ingredient report Invalid type is upper cased",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "633cd03b-dd2f-4822-bace-e15f8b10099c",
+								"exec": [
+									"pm.test(\"POST ingredient report error is invalid type is empty\", function () {\r",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_TYPE');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reports/ingredients?startDate=2150-07-20&endDate=2150-07-30&type=",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reports",
+								"ingredients"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2150-07-20"
+								},
+								{
+									"key": "endDate",
+									"value": "2150-07-30"
+								},
+								{
+									"key": "type",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Configuration",
+			"item": [
+				{
+					"name": "Edit event date configuration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9472bbd7-b200-4cd7-871f-a6efc905460b",
+								"exec": [
+									"pm.test(\"POST configuration edition is successful\", function () {\r",
+									"   pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reservationPeriod\": {\r\n        \"beginDate\": \"2150-02-20\",\r\n        \"endDate\": \"2150-02-23\"\r\n    },\r\n    \"hoppening\": {\r\n        \"beginDate\": \"2150-03-26\",\r\n        \"endDate\": \"2150-03-28\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/configuration",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"configuration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit event date configuration with date conflicts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ec638ed4-34f1-4352-9060-725db9cbbe9e",
+								"exec": [
+									"pm.test(\"POST configuration edition failed\", function () {\r",
+									"   pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reservationPeriod\": {\r\n        \"beginDate\": \"2150-02-20\",\r\n        \"endDate\": \"2150-02-23\"\r\n    },\r\n    \"hoppening\": {\r\n        \"beginDate\": \"2150-02-20\",\r\n        \"endDate\": \"2150-02-23\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8181/configuration",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"configuration"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Material report",
+			"item": [
+				{
+					"name": "Generate material report",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3724242d-9db7-43b3-87bc-6ff10cd85306",
+								"exec": [
+									"pm.test(\"GET material report is successful\", function () {\r",
+									"   pm.response.to.be.success\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reports/material?startDate=2150-03-26&endDate=2150-03-28",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reports",
+								"material"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2150-03-26"
+								},
+								{
+									"key": "endDate",
+									"value": "2150-03-28"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate material report not in hoppening",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "976e8f13-8c17-4df0-b33d-f5a3a32a99fa",
+								"exec": [
+									"pm.test(\"generate material report error is invalid startDate\", function () {\r",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_DATE');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reports/material?startDate=2150-07-15&endDate=2150-07-30",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reports",
+								"material"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2150-07-15"
+								},
+								{
+									"key": "endDate",
+									"value": "2150-07-30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate material report with end date before start date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "68abe737-e9ee-4f32-994a-4643bdb6a4e8",
+								"exec": [
+									"pm.test(\"generate material report error is invalid startDate\", function () {\r",
+									"   pm.expect(pm.response.json().error).to.eql('INVALID_DATE');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reports/material?startDate=2150-07-24&endDate=2150-07-21",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reports",
+								"material"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2150-07-24"
+								},
+								{
+									"key": "endDate",
+									"value": "2150-07-21"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Chefs",
+			"item": [
+				{
+					"name": "Get all chefs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f77b0951-9f77-490a-ad68-9bf97e56b772",
+								"exec": [
+									"pm.test(\"GET reservation is successful\", function () {\r",
+									"   pm.response.to.be.success\r",
+									"});\r",
+									"\r",
+									"const firstDate = pm.response.json().dates.find(d => d.date === \"2150-07-21\");\r",
+									"const secondDate = pm.response.json().dates.find(d => d.date === \"2150-07-22\");\r",
+									"const thirdDate = pm.response.json().dates.find(d => d.date === \"2150-07-23\");\r",
+									"const fourthDate = pm.response.json().dates.find(d => d.date === \"2150-07-24\");\r",
+									"const fifthDate = pm.response.json().dates.find(d => d.date === \"2150-07-27\");\r",
+									"\r",
+									"pm.test(\"Chef Report response has 5 dates\", function () {\r",
+									"    pm.expect(pm.response.json().dates.length).equal(5)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Chef Report response has first reservation's totalPrice\", function () {\r",
+									"    pm.expect(firstDate.totalPrice).to.equal(12000)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Chef Report response has second reservation's totalPrice\", function () {\r",
+									"    pm.expect(secondDate.totalPrice).to.equal(6000)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Chef Report response has third reservation's totalPrice\", function () {\r",
+									"    pm.expect(thirdDate.totalPrice).to.equal(12000)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Chef Report response has fourth reservation's totalPrice\", function () {\r",
+									"    pm.expect(fourthDate.totalPrice).to.equal(6000)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Chef Report response has fifth reservation's totalPrice\", function () {\r",
+									"    pm.expect(fifthDate.totalPrice).to.equal(36000)\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Chef Report response has first reservation's chefs\", function () {\r",
+									"    pm.expect(firstDate.chefs.length).equal(2);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Chef Report response has second reservation's chefs\", function () {\r",
+									"    pm.expect(secondDate.chefs.length).equal(1);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Chef Report response has third reservation's chefs\", function () {\r",
+									"    pm.expect(thirdDate.chefs.length).equal(2);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Chef Report response has fourth reservation's chefs\", function () {\r",
+									"    pm.expect(fourthDate.chefs.length).equal(1);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Chef Report response has fifth reservation's chefs\", function () {\r",
+									"    pm.expect(fifthDate.chefs.length).equal(6);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/reports/chefs",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"reports",
+								"chefs"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
